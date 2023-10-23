@@ -17,12 +17,24 @@ const strB4 = "aBc";
 const expected4 = true;
 
 /**
- * Determines whether or not the strings are equal, ignoring case.
- * - Time: O(?).
- * - Space: O(?).
- * @param {string} strA
- * @param {string} strB
- * @returns {boolean} If the strings are equal or not.
+ 
+Determines whether or not the strings are equal, ignoring case.
+Time: O(?).
+Space: O(?).
+@param {string} strA
+@param {string} strB
+@returns {boolean} If the strings are equal or not.
 
  */
-function caseInsensitiveStringCompare(strA, strB) {}
+function caseInsensitiveStringCompare(strA, strB) {
+    if(strA.toUpperCase() == strB.toUpperCase()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+console.log(caseInsensitiveStringCompare(strA1, strB1));
+console.log(caseInsensitiveStringCompare(strA2, strB2));
+console.log(caseInsensitiveStringCompare(strA3, strB3));
+console.log(caseInsensitiveStringCompare(strA4, strB4));
