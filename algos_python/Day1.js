@@ -27,11 +27,7 @@ Space: O(?).
 
  */
 function caseInsensitiveStringCompare(strA, strB) {
-    if(strA.toUpperCase() == strB.toUpperCase()) {
-        return true;
-    } else {
-        return false;
-    }
+    return strA.toUpperCase() === strB.toUpperCase();
 }
 
 console.log(caseInsensitiveStringCompare(strA1, strB1));
