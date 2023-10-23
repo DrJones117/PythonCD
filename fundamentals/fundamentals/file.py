@@ -1,4 +1,4 @@
-num2 = 2.3 # variable declaration, initialize number
+num2 = 2.3 # variable declaration, initialize float/number
 num1 = 42  # variable declaration, initialize number
 boolean = True  # variable declaration, initialize boolean
 string = 'Hello World' # variable declaration, initialize string
@@ -25,49 +25,49 @@ elif len(string) > 15: # conditional, else if, number
 else: # conditional, else
     print("Just right!") # log statement, string
 
-for x in range(5): # for loop, start, increment, stop, number
+for x in range(5): # for loop, stop(number)
     print(x) # log statement
-for x in range(2,5): # for loop, start, increment, stop, number, number
+for x in range(2,5): # for loop, start(number), stop(number)
     print(x) # log statement, 
-for x in range(2,10,3): # for loop, start, increment, number, number, number
-    print(x)
-x = 0
-while(x < 5):
-    print(x)
-    x += 1
+for x in range(2,10,3): # for loop, start(number), stop(number), increment(number)
+    print(x) # log statment
+x = 0 # variable declaration, number initialization
+while(x < 5): # while loop, conditional, start(variable), stop(number)
+    print(x) # log statement
+    x += 1 # variable, number, increment
 
-pizza_toppings.pop()
-pizza_toppings.pop(1)
+pizza_toppings.pop() # remove item from end of list
+pizza_toppings.pop(1) # remove item from index 1 of list
 
-print(person)
-person.pop('eye_color')
-print(person)
+print(person) # log statement
+person.pop('eye_color') # remove eye_color from person
+print(person) # log statement
 
-for topping in pizza_toppings:
-    if topping == 'Pepperoni':
-        continue
-    print('After 1st if statement')
-    if topping == 'Olives':
-        break
+for topping in pizza_toppings: # for loop, start(variable), stop(list)
+    if topping == 'Pepperoni': # conditional, variable, string
+        continue # move on
+    print('After 1st if statement') # log statement
+    if topping == 'Olives': # conditional, variable, string
+        break # end loop
 
-def print_hello_ten_times():
-    for num in range(10):
-        print('Hello')
+def print_hello_ten_times(): # function
+    for num in range(10): # for loop, start(variable), stop(number)
+        print('Hello') # log statement
 
-print_hello_ten_times()
+print_hello_ten_times() # call function
 
-def print_hello_x_times(x):
-    for num in range(x):
-        print('Hello')
+def print_hello_x_times(x): # function, parameter
+    for num in range(x): # for loop, start(number)
+        print('Hello') # log statement
 
-print_hello_x_times(4)
+print_hello_x_times(4) # call function, arguement
 
-def print_hello_x_or_ten_times(x = 10):
-    for num in range(x):
-        print('Hello')
+def print_hello_x_or_ten_times(x = 10): # function, parameter = 10
+    for num in range(x): # for loop, start(number)
+        print('Hello') # log statement
 
-print_hello_x_or_ten_times()
-print_hello_x_or_ten_times(4)
+print_hello_x_or_ten_times() # call function
+print_hello_x_or_ten_times(4) # call function(arguement)
 
 
 """

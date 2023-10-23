@@ -17,7 +17,7 @@ const strB4 = "aBc";
 const expected4 = true;
 
 /**
- 
+
 Determines whether or not the strings are equal, ignoring case.
 Time: O(?).
 Space: O(?).
