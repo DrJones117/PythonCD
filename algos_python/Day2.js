@@ -60,12 +60,12 @@
 
 {
     /* 
-  Acronyms
+    Acronyms
 
-  Create a function that, given a string, returns the string’s acronym 
-  (first letter of each word capitalized). 
+    Create a function that, given a string, returns the string’s acronym 
+    (first letter of each word capitalized). 
 
-  Do it with .split first if you need to, then try to do it without
+    Do it with .split first if you need to, then try to do it without
 */
 
     const str1 = "object oriented programming";
@@ -93,7 +93,7 @@
         let result = "";
         // see: regex101.com
         const regex = /\b(\w+)\b/g;
-        for (let word of str.matchAll(regex)) {
+        for (let word of str.match(regex)) {
             result += word[0][0].toUpperCase();
         }
         return result;
