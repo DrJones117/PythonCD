@@ -1,8 +1,8 @@
 /* 
-  Given an arr and a separator string, output a string of every item in the array separated by the separator.
-  
-  No trailing separator at the end
-  Default the separator to a comma with a space after it if no separator is provided
+    Given an arr and a separator string, output a string of every item in the array separated by the separator.
+
+    No trailing separator at the end
+    Default the separator to a comma with a space after it if no separator is provided
 */
 
 
