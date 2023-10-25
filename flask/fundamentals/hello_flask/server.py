@@ -5,25 +5,17 @@ app = Flask(__name__)
 def hello_world():
     return 'Hello World!'
 
-@app.route('/success')
-def success():
-    return "success"
+@app.route('/dojo')
+def dojo():
+    return 'Dojo'
 
-@app.route('/hello/<name>')
-def hello(name):
-    print(name)
-    return "Hello, " + name
+@app.route('/hello_person/<string:name>')
+def hello_person(name):
+    return 'Hello ' + name
 
-@app.route('/user/<username>/<id>')
-def show_user_profile(username, id):
-    print(username)
-    print(id)
-    return "username" + username + ", id" + id
-
-@app.route('/hello2/<name>/<int:num>')
-def hello2(name, num):
-    return f"Hello, {name * num}"
-
+@app.route('/hello_num/<string:input>/<int:num>')
+def hello_num(input, num):
+    return f"{input * num}"
 if __name__=="__main__":
     app.run(debug=True)
 
