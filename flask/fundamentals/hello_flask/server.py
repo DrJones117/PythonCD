@@ -1,10 +1,11 @@
 from flask import Flask, render_template
 
 app = Flask(__name__)
-@app.route('/color/play/<int:num>')
-def play(color, num):
-    return render_template('index.html',color=color, num=num)
 
+@app.route('/')
+def open():
+    return ("Hello!")
+    
 @app.route('/dojo')
 def dojo():
     return 'Dojo'
