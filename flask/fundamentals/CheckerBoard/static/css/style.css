@@ -1,0 +1,17 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+.square1 {
+    height: 60px;
+    width: 60px;
+    background-color: black;
+}
+
+.square2 {
+    height: 60px;
+    width: 60px;
+    background-color: red;
+}
