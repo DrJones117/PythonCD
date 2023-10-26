@@ -6,6 +6,15 @@
     <title>hello flask</title>
 </head>
 <body>
-    <h1 display="flex">Welcome!</h1>
+    <div style="display:flex; justify-content: center;">
+        <div>
+            <h1 style="text-align: center;">Welcome!</h1>
+            <div style="display:flex; justify-content: space-around; height: 2000px; width: 2000px;">
+                {% for x in range(0,num) %}
+                <div style="height: 300px; width: 300px; border: solid;"></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </body>
 </html>
