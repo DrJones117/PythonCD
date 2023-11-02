@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, redirect
+from flask_app import app
+from flask import render_template, redirect, request, session
+from flask_app.models.user import User
 
-from main import User
-
-app=Flask(__name__)
 
 @app.route('/')
 def main():
@@ -31,10 +30,8 @@ def show(id):
 def update(id):
     data = {
         "id": id,
-        "first_name": request.form["first_name"],
-        "last_name": request.form["last_name"],
-        "email": request.form["email"]
-    }
+        **request.form
+    } 
     User.update(data)
     return redirect(f'/main/show/{id}')
 
@@ -60,6 +57,3 @@ def new():
     return redirect(f'/main/show/{user_id}')
 
 
-
-if __name__ == "__main__":
-    app.run(debug = True)
