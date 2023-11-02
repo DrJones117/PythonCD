@@ -25,8 +25,16 @@
                     <td class="bg-secondary text-white">{{ user.last_name }}</td>
                     <td class="bg-secondary text-white">{{ user.email }}</td>
                     <td class="bg-secondary">
-                        <a href="/edit/{{ user.id }}">
+                        <a href="/main/show/{{ user.id }}">
+                            <button class="btn btn-primary">Show</button>
+                        </a>
+
+                        <a href="/main/edit/{{ user.id }}">
                             <button class="btn btn-primary">Edit</button>
+                        </a>
+
+                        <a href="/main/delete/{{ user.id }}">
+                            <button class="btn btn-danger text-black">Delete</button>
                         </a>
                     </td>
                 </tr>
@@ -36,5 +44,6 @@
     <a  href="/main/new">
         <button class="btn btn-primary">Create a User</button>
     </a>
+
 </body>
 </html>
