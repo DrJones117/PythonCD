@@ -21,9 +21,14 @@
         <tbody>
             {% for user in users %}
                 <tr>
-                    <td class="bg-secondary text-white">{{ user.first_name }}</td>
+                    <td class="bg-secondary text-white">{{ user.first_name }} </td>
                     <td class="bg-secondary text-white">{{ user.last_name }}</td>
                     <td class="bg-secondary text-white">{{ user.email }}</td>
+                    <td class="bg-secondary">
+                        <a href="/edit/{{ user.id }}">
+                            <button class="btn btn-primary">Edit</button>
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

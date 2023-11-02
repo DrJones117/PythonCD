@@ -19,9 +19,34 @@ class User:
         return users
 
     @classmethod
+    def get_single(cls, id):
+        data = {"id":id}
+        query = "SELECT * FROM users WHERE id = %(id)s"
+        results = connectToMySQL("users").query_db(query, data)
+        if results:
+            new_user = cls(results[0])
+            return cls(results[0])
+        else:
+            return False
+
+
+    @classmethod
     def save_user(cls, data):
         query = "INSERT INTO users (first_name, last_name, email) VALUES (%(first_name)s, %(last_name)s, %(email)s);"
         result = connectToMySQL('users').query_db(query, data)
         return result
+
+    @classmethod
+    def update(cls, form):
+        query = """
+        UPDATE users SET 
+        first_name = %(first_name)s,
+        last_name = %(last_name)s,
+        email = %(email)s
+        updated_at = NOW()
+        WHERE id = %(id)s;
+        """
+
+        return connectToMySQL("users").query_db(query, form)
 
 
