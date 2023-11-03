@@ -15,7 +15,7 @@ class Ninja:
             "id": id
         }
         query = "SELECT * FROM ninjas WHERE dojo_id = %(id)s;"
-        results = connectToMySQL('dojos_and_ninjas').query_db(query)
+        results = connectToMySQL('dojos_and_ninjas').query_db(query, data)
         ninjas = []
         for ninja in results:
             ninjas.append(cls(ninja))
