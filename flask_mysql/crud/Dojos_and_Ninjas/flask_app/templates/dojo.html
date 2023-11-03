@@ -2,28 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=!, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Dojo</title>
 </head>
 <body>
-    <div>
-        <div class="row g-3 align-items-center">
-            <div class="col-auto">
-                <label for="new_dojo" class="col-form-label">Password</label>
-            </div>
-            <div class="col-auto">
-                <input type="password" id="new_dojo" class="form-control" aria-describedby="new_dojo">
-            </div>
-        </div>
-
+    <div class="row g-3 w-25 p-2 align-items-center bg-secondary border border-black border-3">
+        <h1>Dojos</h1>
         <div>
             {% for dojo in dojos %}
             <ul class="list-group">
-                <li class="list-group-item">{{ dojo.name }}</li>
+                <li class="list-group-item  bg-secondary border-start">
+                    <a href="/dojo/grab/{{ dojo.id }}" class="text-white">
+                        {{ dojo.name }}
+                    </a>
+                </li>
             </ul>
             {% endfor %}
+        </div>
+
+        <h2>Add Dojo</h2>
+        <div class="col-auto">
+            <label for="new_dojo" class="col-form-label">Add new</label>
+        </div>
+        <div class="col-auto">
+            <input type="password" id="new_dojo" class="form-control" aria-describedby="new_dojo">
         </div>
     </div>
 </body>
