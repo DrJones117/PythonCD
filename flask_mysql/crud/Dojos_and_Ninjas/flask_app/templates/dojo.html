@@ -23,12 +23,16 @@
         </div>
 
         <h2>Add Dojo</h2>
-        <div class="col-auto">
-            <label for="new_dojo" class="col-form-label">Add new</label>
-        </div>
-        <div class="col-auto">
-            <input type="password" id="new_dojo" class="form-control" aria-describedby="new_dojo">
-        </div>
+        <form action="/dojo/create" method="POST">
+            <div class="col-auto">
+                <label for="new_dojo" class="col-form-label">Add new</label>
+            </div>
+            <div class="col-auto">
+                <input name="name" type="text" id="new_dojo">
+                <button class="btn btn-primary">Add Dojo</button>
+            </div>
+        </form>
     </div>
+    <a href="/dojo/add_ninja">Add Ninja</a>
 </body>
 </html>

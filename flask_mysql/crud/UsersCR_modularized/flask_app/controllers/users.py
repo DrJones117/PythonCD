@@ -31,7 +31,7 @@ def update(id):
     data = {
         "id": id,
         **request.form
-    } 
+    }
     User.update(data)
     return redirect(f'/main/show/{id}')
 

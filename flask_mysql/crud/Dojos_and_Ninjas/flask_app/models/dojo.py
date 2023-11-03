@@ -28,3 +28,12 @@ class Dojo:
             return cls(results[0])
         else:
             return False
+
+    @classmethod
+    def create_dojo(cls, data):
+        query = """
+            INSERT INTO dojos (name, created_at, updated_at)
+            VALUES (%(name)s, NOW(), NOW());
+        """
+        results = connectToMySQL('dojos_and_ninjas').query_db(query, data)
+        return results
