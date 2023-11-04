@@ -35,6 +35,7 @@ def dojo_show(id):
     ninjas = Ninja.get_ninjas(id)
     return render_template('dojo_show.html', dojo = dojo, ninjas = ninjas)
 
+# Create Dojo Route
 @app.route('/dojo/create', methods = ['POST'])
 def create_dojo():
     print(request.form)
