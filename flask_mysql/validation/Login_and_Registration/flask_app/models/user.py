@@ -1,21 +1,42 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import app
 from flask import flash
-
+import re
 from flask_bcrypt import Bcrypt  
 bcrypt = Bcrypt(app)
+
+
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
+
 
 
 class User:
     def __init__(self, data):
         self.id = data['id']
         self.email = data['email']
-        self.name = data['name']
+        self.first_name = data['first_name']
+        self.last_name = data['last_name']
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
+    # Validates the user's password
+    @classmethod
+    def validator(cls, form):
+        is_valid = True
+        if form['password'] != form['confirm_password']:
+            flash("The passwords you entered don't match", "register_err")
+            is_valid = False
+        if cls.find_user(form['email']):
+            flash("Email taken", "register_err")
+            is_valid = False
+        if not EMAIL_REGEX.match(form['email']): 
+            flash("Invalid email address!", "register_err")
+            is_valid = False
+        return is_valid
 
+
+    # Registers a new user
     @classmethod
     def register(cls, form):
         hash = bcrypt.generate_password_hash(form["password"])
@@ -24,12 +45,27 @@ class User:
             "password": hash
         }
         query = """
-        INSERT INTO users (email, name, password)
-        VALUES (%(email)s, %(name)s, %(password)s);
+        INSERT INTO users (email, first_name, last_name, password)
+        VALUES (%(email)s, %(first_name)s, %(last_name)s, %(password)s);
         """
         return connectToMySQL("accounts_db").query_db(query, data)
 
 
+    # @classmethod
+    # def get_one(cls, id):
+    #     query = """
+    #     SELECT * FROM user WHERE id = %(id)s;
+    #     """
+    #     data = {
+    #         "id": id
+    #     }
+    #     results = connectToMySQL("accounts_db").query_db(query, data)
+    #     if results:
+    #         return cls(results[0])
+    #     else:
+    #         return None
+
+    # Finds a single user by there email
     @classmethod
     def find_user(cls, email):
         data = {
@@ -44,7 +80,7 @@ class User:
         else:
             return False
 
-
+    # Logs a user in by comparing the email and password they entered with one in the data base
     @classmethod
     def login(cls, form):
         user = cls.find_user(form['email'])

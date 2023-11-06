@@ -12,14 +12,14 @@
     <!-- Log In form -->
     <div class="bg-secondary w-25 p-2 rounded">
         <h1>Log In</h1>
+        {% with messages = get_flashed_messages(category_filter=["login_err"]) %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="text-danger">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <form action="/login" method="POST">
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <p class="text-danger">{{message}}</p>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
             <input name="email" type="text" class="form-control mt-2" placeholder="email">
             <input name="password" type="text" class="form-control mt-2" placeholder="password">
             <button class="btn btn-success m-2">Login</button>
@@ -29,13 +29,22 @@
     <!-- Register Form -->
     <div class="bg-secondary w-25 p-2 rounded">
         <h1>Register</h1>
+        {% with messages = get_flashed_messages(category_filter=["register_err"]) %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="text-danger">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <form action="/add_user" method="POST">
-            <input name="name" type="text" class="form-control mt-2" placeholder="full name">
+            <input name="first_name" type="text" class="form-control mt-2" placeholder="First name">
+            <input name="last_name" type="text" class="form-control mt-2" placeholder="Last name">
             <input name="email" type="text" class="form-control mt-2" placeholder="email">
             <input name="password" type="text" class="form-control mt-2" placeholder="password">
             <input name="confirm_password" type="text" class="form-control mt-2" placeholder="confirm password">
-            <button class="btn btn-primary m-2">Login</button>
+            <button class="btn btn-primary m-2">Register</button>
         </form>
     </div>
 </body>
 </html>
+
