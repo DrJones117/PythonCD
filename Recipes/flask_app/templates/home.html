@@ -19,5 +19,28 @@
     <div class="d-flex justify-content-center w-100 h-50 bg-secondary">
         <h1>Welcome, {{ user.first_name }}</h1>
     </div>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Under 30 minutes</th>
+                    <th>Posted By person</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for recipe in recipes %}
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
