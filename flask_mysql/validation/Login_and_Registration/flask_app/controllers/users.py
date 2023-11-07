@@ -40,4 +40,5 @@ def add_user():
 def home_page():
     if not 'id' in session:
         return redirect('/')
-    return render_template("home.html")
+    user = User.get_one(session['id'])
+    return render_template("home.html", user = user)

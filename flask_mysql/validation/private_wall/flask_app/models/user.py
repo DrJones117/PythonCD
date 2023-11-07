@@ -20,7 +20,7 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
-    # Validates the user's password
+    # Validates the user's register form
     @classmethod
     def validator(cls, form):
         is_valid = True
@@ -32,6 +32,9 @@ class User:
             is_valid = False
         if not EMAIL_REGEX.match(form['email']): 
             flash("Invalid email address!", "register_err")
+            is_valid = False
+        if len(form['password']) < 3:
+            flash("Password should be at least 3 chractes long", "register_err")
             is_valid = False
         if len(form['first_name']) < 2:
             flash("First Name must be at least 2 characters long.", "register_err")
@@ -59,7 +62,10 @@ class User:
     @classmethod
     def get_one(cls, id):
         query = """
-        SELECT * FROM users WHERE id = %(id)s;
+        SELECT * FROM users 
+        LEFT JOIN messages ON users.id = user_to_id
+        JOIN users AS senders ON senders.id = user_from_id
+        WHERE users.id = %(id)s;
         """
         data = {
             "id": id
@@ -98,3 +104,14 @@ class User:
         else:
             flash("Bad Login", "login_err")
             return False
+
+    @classmethod
+    def get_all(cls):
+        query = "SELECT * FROM users;"
+        results = connectToMySQL(DATABASE).query_db(query)
+        users = []
+        for row in results:
+            users.append(cls(row))
+        return results
+
+

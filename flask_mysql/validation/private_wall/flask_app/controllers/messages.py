@@ -40,5 +40,25 @@ def add_user():
 def home_page():
     if not 'id' in session:
         return redirect('/')
+    messages = Message.display_messages()
     user = User.get_one(session['id'])
-    return render_template("home.html", user = user)
+    users = User.get_all()
+    return render_template("home.html", users = users, user = user, messages = messages)
+
+# ====== Messages Routes ======
+
+# Calls the send message function
+@app.route('/messages/send', methods = ['POST'])
+def send():
+    print(request.form)
+    Message.send_message(request.form)
+    return redirect('/home_page')
+
+# Calls the delete function
+@app.route('/messages/<int:id>/delete')
+def delete(id):
+    data = {
+        "id": id
+    }
+    Message.delete(data)
+    return redirect('/home_page')

@@ -33,6 +33,12 @@ class User:
         if not EMAIL_REGEX.match(form['email']): 
             flash("Invalid email address!", "register_err")
             is_valid = False
+        if len(form['first_name']) < 2:
+            flash("First Name must be at least 2 characters long.", "register_err")
+            is_valid = False
+        if len(form['last_name']) < 2:
+            flash("Last Name must be at least 2 characters long.", "register_err")
+            is_valid = False
         return is_valid
 
 
@@ -51,19 +57,21 @@ class User:
         return connectToMySQL("accounts_db").query_db(query, data)
 
 
-    # @classmethod
-    # def get_one(cls, id):
-    #     query = """
-    #     SELECT * FROM user WHERE id = %(id)s;
-    #     """
-    #     data = {
-    #         "id": id
-    #     }
-    #     results = connectToMySQL("accounts_db").query_db(query, data)
-    #     if results:
-    #         return cls(results[0])
-    #     else:
-    #         return None
+    # Gets a single user by their id
+    @classmethod
+    def get_one(cls, id):
+        query = """
+        SELECT * FROM user WHERE id = %(id)s;
+        """
+        data = {
+            "id": id
+        }
+        results = connectToMySQL("accounts_db").query_db(query, data)
+        if results:
+            return cls(results[0])
+        else:
+            return None
+
 
     # Finds a single user by there email
     @classmethod

@@ -9,8 +9,8 @@
     <title>Home Page</title>
 </head>
 <body>
-    <div class="p-3 d-flex justify-content-between">
-        <h1>Coding Dojo Wall</h1>
+    <div class="d-flex justify-content-between text-bg-secondary p-3">
+        <h1 class="text-bg-secondary">Coding Dojo Wall</h1>
         <div class="d-flex">
             <h3 class="me-3">Welcome, {{ user.first_name }}</h3>
             <form action="/home_page/logout">
@@ -18,9 +18,38 @@
             </form>
         </div>
     </div>
+    
+    <div class="h-50 d-flex flex-col align-items-center justify-content-evenly mt-5 text-bg-secondary">
+        <div class="w-25">
+            <h3>Your messages ({{ user.first_name }})</h3>
+            {% for message in messages %}
+                {% if message.user_from_id != session['id'] and message.user_to_id == session['id'] %}
+                    <div class="d-flex">
+                        <div>
+                            <p>{{ message.user_from_id }}</p>
+                            <p class="text-bg-white border rounded text-wrap" style="width: 200px;">{{message.information}}</p>
+                        </div>
+                        <a href="/messages/{{ message.id }}/delete" class="btn btn-danger h-25 m-3 ms-5">Delete</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
 
-    <div class="d-flex justify-content-center w-100 h-50 bg-secondary">
-        <h1>Welcome, {{ user.first_name }}</h1>
+        <div class="w-25">
+            <h3>Send Messages</h3>
+            <p>You have sent number messages</p>
+            {% for user in users %}
+                {% if user.id != session['id'] %}
+                    <form action="/messages/send" method = 'POST' class="mb-2 form d-flex flex-col justify-content-evenly align-items-center">
+                        <label class="me-2" for="information">{{ user.first_name }}</label>
+                        <input name="information" type="text" class="form mt-2">
+                        <input type="hidden" name="user_from_id" value="{{ session['id'] }}">
+                        <input type="hidden" name="user_to_id" value="{{ user.id }}">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </form>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
-</body>
+</body> 
 </html>
