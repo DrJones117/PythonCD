@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="p-3 d-flex justify-content-between">
-        <a href="/">A Website</a>
+        <h1>A Website</h1>
         <form action="/home_page/logout">
             <button class="btn btn-danger">Logout</button>
         </form>
@@ -20,13 +20,13 @@
         <h1>Welcome, {{ user.first_name }}</h1>
     </div>
 
-    <div>
+    <div class="w-50 d-flex flex-col justify-content-center">
         <table class="table">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Under 30 minutes</th>
-                    <th>Posted By person</th>
+                    <th>Posted By</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -34,13 +34,28 @@
             <tbody>
                 {% for recipe in recipes %}
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        
+                        <td>{{ recipe.name }}</td>
+                        {% if recipe.under_30_minutes == 1 %}
+                            <td>Yes</td>
+                        {% endif %}
+                        {% if recipe.under_30_minutes == 0 %}
+                            <td>No</td>
+                        {% endif %}
+                        <td>{{ recipe.user.first_name }} {{ recipe.user.last_name }}</td>
+                        <td class="d-flex">
+                            <a href="/recipes/{{ recipe.id }}/show" class="btn btn-primary me-1 h-25">View</a>
+                            {% if session['id'] == recipe.user_id %}
+                                <a href="/recipes/{{ recipe.id }}/edit" class="btn btn-secondary me-1 h-50">Edit</a>
+                            {% endif %}
+                            {% if session['id'] == recipe.user_id %}
+                                <a href="/recipes/{{ recipe.id }}/delete" class="btn btn-danger me-1 h-50">Delete</a>
+                            {% endif %}
+                        </td>
                     </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
+    <a href="/recipe">Add Recipe</a>
 </body>
 </html>

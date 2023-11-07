@@ -1,12 +1,12 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app import app
+from flask_app import app, DATABASE
 from flask import flash
 import re
-from flask_bcrypt import Bcrypt  
+from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
 
-EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 
 
@@ -40,7 +40,6 @@ class User:
             flash("Last Name must be at least 2 characters long.", "register_err")
             is_valid = False
         return is_valid
-
 
     # Registers a new user
     @classmethod
