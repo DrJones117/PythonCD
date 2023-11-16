@@ -26,9 +26,9 @@ function reverseStr(str) {
     if (str === "") {
         return str;
     }
-    var thing = str.slice(str.length - 1);
-    var remainder = str.slice(0, str.length - 1);
-    return thing + reverseStr(remainder);
+    return str.slice(str.length - 1) + reverseStr(str.slice(0, str.length - 1));
+    // var thing = str.slice(str.length - 1);
+    // var remainder = str.slice(0, str.length - 1);
 }
 
 console.log(reverseStr(str1))
